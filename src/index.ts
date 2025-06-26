@@ -56,7 +56,8 @@ export default async () => {
                 properties: {
                     key: { type: "string" },
                     message: { type: "string" },
-                    expires: { type: ["string", "null"] }
+                    expires: { type: ["string", "null"] },
+                    one_time: { type: "boolean" }
                 }
             },
             response: {
@@ -65,7 +66,8 @@ export default async () => {
                     properties: {
                         id: { type: "string" },
                         message: { type: "string" },
-                        expires: { type: ["string", "null"] }
+                        expires: { type: ["string", "null"] },
+                        one_time: { type: "boolean" }
                     }
                 },
                 "4xx": {
