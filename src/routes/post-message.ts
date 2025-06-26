@@ -1,6 +1,9 @@
 import { FastifyRequest, FastifyReply } from "fastify"
 
-export async function url_post(request: FastifyRequest, reply: FastifyReply) {
+export async function post_message(request: FastifyRequest, reply: FastifyReply) {
     try {
-    } catch (error) {}
+    } catch (error) {
+        console.log(error)
+        return reply.code(500).send({ error: "Internal Server Error" })
+    }
 }

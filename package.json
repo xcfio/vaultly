@@ -6,7 +6,7 @@
     "author": "xcfio",
     "license": "MIT",
     "scripts": {
-        "dev": "netlify dev",
+        "dev": "netlify dev --no-open",
         "test": "tsc --noEmit"
     },
     "dependencies": {
@@ -23,3 +23,4 @@
         "@types/uuid": "^10.0.0"
     }
 }
+
