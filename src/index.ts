@@ -1,7 +1,12 @@
+import rl from "@fastify/rate-limit"
 import Fastify from "fastify"
 
-const fastify = Fastify({ logger: true })
+export default async () => {
+    const fastify = Fastify({ logger: true })
+    await fastify.register(rl, { max: 10, timeWindow: 60000 })
 
-fastify.get("/", () => "Success")
+    fastify.get("/", (_, reply) => "Success")
+    fastify.get("/status", (_, reply) => reply.code(200).send({ status: "ok" }))
 
-export default fastify
+    return fastify
+}
