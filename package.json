@@ -1,0 +1,20 @@
+{
+    "name": "vaultly",
+    "version": "1.0.0",
+    "main": "index.js",
+    "type": "commonjs",
+    "author": "xcfio",
+    "license": "MIT",
+    "scripts": {
+        "dev": "netlify dev",
+        "test": "tsc --noEmit"
+    },
+    "dependencies": {
+        "@netlify/functions": "^4.1.7",
+        "fastify": "^5.4.0",
+        "serverless-http": "^3.2.0"
+    },
+    "devDependencies": {
+        "@types/node": "^24.0.4"
+    }
+}
