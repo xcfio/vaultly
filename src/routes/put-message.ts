@@ -1,6 +1,6 @@
 import { FastifyRequest, FastifyReply } from "fastify"
 import { createHmac } from "node:crypto"
-import { encrypt } from "../function"
+import { encrypt } from "../function/crypto"
 import { db, table } from "../database"
 
 export async function put_message(
@@ -29,7 +29,6 @@ export async function put_message(
             })
             .returning()
 
-        console.log(data)
         return { id: data.id, message, expires, one_time }
     } catch (error) {
         console.log(error)

@@ -1,12 +1,13 @@
+import { post_message, put_message } from "./routes"
+import { html } from "./function"
 import rl from "@fastify/rate-limit"
 import Fastify from "fastify"
-import { post_message, put_message } from "./routes"
 
 export default async () => {
     const fastify = Fastify({ logger: false })
     await fastify.register(rl, { max: 1, timeWindow: 60000 })
 
-    fastify.get("/", (_, reply) => "Success")
+    fastify.get("/", (_, reply) => reply.type("text/html").send(html))
     fastify.get("/status", (_, reply) => reply.code(200).send({ status: "ok" }))
 
     fastify.route({
