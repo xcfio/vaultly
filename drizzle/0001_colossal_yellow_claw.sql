@@ -1,1 +1,0 @@
-ALTER TABLE "message" ALTER COLUMN "key" SET DATA TYPE char(128);
