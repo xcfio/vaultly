@@ -670,7 +670,7 @@ export const html = `
                 if (result.error) {
                     showResult('Error', result.error, true);
                 } else {
-                    const successMessage = \`Message created successfully!\n\nMessage ID: \${result.id}\nExpires: \${result.expires || 'Never'}\nOne-time: \${result.one_time ? 'Yes' : 'No'}\n\nShare this ID with the recipient to retrieve the message.\`;
+                    const successMessage = \`Message created successfully!\n\nMessage ID: \${result.id}\nExpires: \${new Date(result.expires).toLocaleString() || 'Never'}\nOne-time: \${result.one_time ? 'Yes' : 'No'}\n\nShare this ID with the recipient to retrieve the message.\`;
                     showResult('Success', successMessage);
                     e.target.reset();
                 }
