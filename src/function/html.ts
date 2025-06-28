@@ -237,20 +237,61 @@ export const html = `
         .subtitle {
             color: rgba(255, 255, 255, 0.9);
             font-size: 1.1rem;
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
             font-weight: 400;
         }
 
-        .github-link {
-            color: rgba(255, 255, 255, 0.8);
+        /* Enhanced GitHub Star Section */
+        .github-star-section {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.3s ease;
-            font-weight: 300;
         }
 
-        .github-link:hover {
-            color: rgba(255, 255, 255, 1);
+        .github-star-section:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .star-icon {
+            font-size: 1.2rem;
+            animation: starPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes starPulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        .github-star-section:hover .star-icon {
+            animation: starSpin 0.6s ease-in-out;
+        }
+
+        @keyframes starSpin {
+            0% {
+                transform: scale(1) rotate(0deg);
+            }
+            50% {
+                transform: scale(1.3) rotate(180deg);
+            }
+            100% {
+                transform: scale(1) rotate(360deg);
+            }
         }
 
         .theme-toggle {
@@ -336,15 +377,57 @@ export const html = `
             resize: vertical;
         }
 
-        .form-checkbox {
+        /* Enhanced Toggle Switch */
+        .toggle-container {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 1rem;
+            margin-top: 0.5rem;
         }
 
-        .form-checkbox input {
-            width: 18px;
-            height: 18px;
+        .toggle-switch {
+            position: relative;
+            width: 60px;
+            height: 30px;
+            background: var(--input-border);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid var(--input-border);
+        }
+
+        .toggle-switch.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-color: #667eea;
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .toggle-slider {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 22px;
+            height: 22px;
+            background: white;
+            border-radius: 50%;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .toggle-switch.active .toggle-slider {
+            transform: translateX(28px);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .toggle-label {
+            font-weight: 500;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .toggle-switch.active + .toggle-label {
+            color: #667eea;
         }
 
         .btn {
@@ -425,6 +508,64 @@ export const html = `
             font-family: 'Courier New', monospace;
             white-space: pre-wrap;
             word-break: break-all;
+            position: relative;
+        }
+
+        /* Copy ID Container */
+        .copy-id-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--input-bg);
+            border: 1px solid var(--input-border);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+
+        .message-id {
+            flex: 1;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            word-break: break-all;
+            color: var(--text-primary);
+        }
+
+        .copy-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            font-family: 'Comfortaa', cursive;
+            font-weight: 600;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .copy-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+
+        .copy-btn.copied {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            animation: copySuccess 0.3s ease;
+        }
+
+        @keyframes copySuccess {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
         }
 
         .error {
@@ -470,6 +611,16 @@ export const html = `
             .logo {
                 font-size: 2.5rem;
             }
+
+            .copy-id-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .copy-btn {
+                align-self: center;
+                width: fit-content;
+            }
         }
     </style>
 </head>
@@ -496,8 +647,9 @@ export const html = `
         <div class="header">
             <h1 class="logo">Vaultly</h1>
             <p class="subtitle">Secure Message Storage & Retrieval</p>
-            <a href="https://github.com/xcfio/vaultly" target="_blank" class="github-link">
-                Follow the project on GitHub →
+            <a href="https://github.com/xcfio/vaultly" target="_blank" class="github-star-section">
+                <span class="star-icon">⭐</span>
+                <span>Star us on GitHub if you love this project!</span>
             </a>
         </div>
 
@@ -519,10 +671,13 @@ export const html = `
                         <input type="datetime-local" id="createExpires" class="form-input">
                     </div>
                     <div class="form-group">
-                        <label class="form-checkbox">
-                            <input type="checkbox" id="createOneTime">
-                            <span>One-time access only</span>
-                        </label>
+                        <label class="form-label">One-time Access</label>
+                        <div class="toggle-container">
+                            <div class="toggle-switch" id="oneTimeToggle" onclick="toggleOneTime()">
+                                <div class="toggle-slider"></div>
+                            </div>
+                            <label class="toggle-label" onclick="toggleOneTime()">One-time access only</label>
+                        </div>
                     </div>
                     <button type="submit" class="btn btn-primary">
                         <span id="createBtnText">Create Message</span>
@@ -554,162 +709,216 @@ export const html = `
             <div id="resultCard" class="result-card">
                 <h3 class="result-title" id="resultTitle">Result</h3>
                 <div class="result-content" id="resultContent"></div>
+                <div id="copyIdContainer" class="copy-id-container" style="display: none;">
+                    <div class="message-id" id="messageId"></div>
+                    <button class="copy-btn" id="copyBtn" onclick="copyMessageId()">Copy ID</button>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
+        let oneTimeEnabled = false;
+
+        // Toggle switch functionality
+        function toggleOneTime() {
+           oneTimeEnabled = !oneTimeEnabled;
+           const toggle = document.getElementById('oneTimeToggle');
+
+           if (oneTimeEnabled) {
+               toggle.classList.add('active');
+           } else {
+               toggle.classList.remove('active');
+           }
+        }
+
+        // Copy message ID functionality
+        function copyMessageId() {
+           const messageId = document.getElementById('messageId').textContent;
+           const copyBtn = document.getElementById('copyBtn');
+
+           navigator.clipboard.writeText(messageId).then(() => {
+               copyBtn.textContent = 'Copied!';
+               copyBtn.classList.add('copied');
+
+               setTimeout(() => {
+                   copyBtn.textContent = 'Copy ID';
+                   copyBtn.classList.remove('copied');
+               }, 2000);
+           }).catch(() => {
+               // Fallback for older browsers
+               const textArea = document.createElement('textarea');
+               textArea.value = messageId;
+               document.body.appendChild(textArea);
+               textArea.select();
+               document.execCommand('copy');
+               document.body.removeChild(textArea);
+
+               copyBtn.textContent = 'Copied!';
+               copyBtn.classList.add('copied');
+
+               setTimeout(() => {
+                   copyBtn.textContent = 'Copy ID';
+                   copyBtn.classList.remove('copied');
+               }, 2000);
+           });
+        }
+
         // Theme management
         function toggleTheme() {
-            const html = document.documentElement;
-            const themeIcon = document.getElementById('theme-icon');
-            const currentTheme = html.getAttribute('data-theme');
-            
-            if (currentTheme === 'dark') {
-                html.removeAttribute('data-theme');
-                themeIcon.textContent = '🌙';
-                localStorage.setItem('theme', 'light');
-            } else {
-                html.setAttribute('data-theme', 'dark');
-                themeIcon.textContent = '☀️';
-                localStorage.setItem('theme', 'dark');
-            }
+           const html = document.documentElement;
+           const themeIcon = document.getElementById('theme-icon');
+           const currentTheme = html.getAttribute('data-theme');
+
+           if (currentTheme === 'dark') {
+               html.removeAttribute('data-theme');
+               themeIcon.textContent = '🌙';
+               // Don't use localStorage in artifacts
+           } else {
+               html.setAttribute('data-theme', 'dark');
+               themeIcon.textContent = '☀️';
+               // Don't use localStorage in artifacts
+           }
         }
 
         // Initialize theme
         function initTheme() {
-            const savedTheme = localStorage.getItem('theme');
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            const themeIcon = document.getElementById('theme-icon');
-            
-            if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-                document.documentElement.setAttribute('data-theme', 'dark');
-                themeIcon.textContent = '☀️';
-            } else {
-                themeIcon.textContent = '🌙';
-            }
+           const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+           const themeIcon = document.getElementById('theme-icon');
+
+           if (prefersDark) {
+               document.documentElement.setAttribute('data-theme', 'dark');
+               themeIcon.textContent = '☀️';
+           } else {
+               themeIcon.textContent = '🌙';
+           }
         }
 
         // API functions
         async function createMessage(data) {
-            const response = await fetch('/message', {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data)
-            });
-            return response.json();
+           const response = await fetch('/message', {
+               method: 'PUT',
+               headers: {
+                   'Content-Type': 'application/json',
+               },
+               body: JSON.stringify(data)
+           });
+           return response.json();
         }
 
         async function retrieveMessage(data) {
-            const response = await fetch('/message', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data)
-            });
-            return response.json();
+           const response = await fetch('/message', {
+               method: 'POST',
+               headers: {
+                   'Content-Type': 'application/json',
+               },
+               body: JSON.stringify(data)
+           });
+           return response.json();
         }
 
         // UI functions
-        function showResult(title, content, isError = false) {
-            const resultCard = document.getElementById('resultCard');
-            const resultTitle = document.getElementById('resultTitle');
-            const resultContent = document.getElementById('resultContent');
-            
-            resultTitle.textContent = title;
-            resultContent.textContent = content;
-            resultContent.className = \`result-content \${isError ? 'error' : 'success'}\`;
+        function showResult(title, content, isError = false, messageId = null) {
+           const resultCard = document.getElementById('resultCard');
+           const resultTitle = document.getElementById('resultTitle');
+           const resultContent = document.getElementById('resultContent');
+           const copyIdContainer = document.getElementById('copyIdContainer');
+           const messageIdElement = document.getElementById('messageId');
 
-            resultCard.classList.add('show');
-            resultCard.scrollIntoView({ behavior: 'smooth' });
+           resultTitle.textContent = title;
+           resultContent.textContent = content;
+           resultContent.className = \`result-content \${isError ? 'error' : 'success'}\`;
+
+           if (messageId && !isError) {
+               messageIdElement.textContent = messageId;
+               copyIdContainer.style.display = 'flex';
+           } else {
+               copyIdContainer.style.display = 'none';
+           }
+
+           resultCard.classList.add('show');
+           resultCard.scrollIntoView({ behavior: 'smooth' });
         }
 
         function hideResult() {
-            document.getElementById('resultCard').classList.remove('show');
+           document.getElementById('resultCard').classList.remove('show');
         }
 
         function setLoading(formId, isLoading) {
-            const btnTextId = formId === 'createForm' ? 'createBtnText' : 'retrieveBtnText';
-            const btnText = document.getElementById(btnTextId);
-            const form = document.getElementById(formId);
-            const submitBtn = form.querySelector('button[type="submit"]');
-            
-            if (isLoading) {
-                btnText.innerHTML = '<span class="loading"></span>';
-                submitBtn.disabled = true;
-            } else {
-                btnText.textContent = formId === 'createForm' ? 'Create Message' : 'Retrieve Message';
-                submitBtn.disabled = false;
-            }
+           const btnTextId = formId === 'createForm' ? 'createBtnText' : 'retrieveBtnText';
+           const btnText = document.getElementById(btnTextId);
+           const form = document.getElementById(formId);
+           const submitBtn = form.querySelector('button[type="submit"]');
+
+           if (isLoading) {
+               btnText.innerHTML = '<span class="loading"></span>';
+               submitBtn.disabled = true;
+           } else {
+               btnText.textContent = formId === 'createForm' ? 'Create Message' : 'Retrieve Message';
+               submitBtn.disabled = false;
+           }
         }
 
         // Form handlers
         document.getElementById('createForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            hideResult();
-            setLoading('createForm', true);
-            
-            try {
-                const formData = new FormData(e.target);
-                const data = {
-                    key: document.getElementById('createKey').value,
-                    message: document.getElementById('createMessage').value,
-                    one_time: document.getElementById('createOneTime').checked
-                };
-                
-                const expires = document.getElementById('createExpires').value;
-                if (expires) {
-                    data.expires = new Date(expires).toISOString();
-                }
-                
-                const result = await createMessage(data);
-                
-                if (result.error) {
-                    showResult('Error', result.error, true);
-                } else {
-                    const successMessage = \`Message created successfully!\n\nMessage ID: \${result.id}\nExpires: \${new Date(result.expires).toLocaleString() || 'Never'}\nOne-time: \${result.one_time ? 'Yes' : 'No'}\n\nShare this ID with the recipient to retrieve the message.\`;
-                    showResult('Success', successMessage);
-                    e.target.reset();
-                }
-            } catch (error) {
-                showResult('Error', \`Failed to create message: \${error.message}\`, true);
-            } finally {
-                setLoading('createForm', false);
-            }
+           e.preventDefault();
+           hideResult();
+           setLoading('createForm', true);
+
+           try {
+               const data = {
+                   key: document.getElementById('createKey').value,
+                   message: document.getElementById('createMessage').value,
+                   one_time: oneTimeEnabled
+               };
+
+               const expires = document.getElementById('createExpires').value;
+               if (expires) {
+                   data.expires = new Date(expires).toISOString();
+               }
+
+               const result = await createMessage(data);
+
+               if (result.error) {
+                   showResult('Error', result.error, true);
+               } else {
+                   const successMessage = \`Message created successfully!\n\nExpires: \${new Date(result.expires).toLocaleString() || 'Never'}\nOne-time: \${result.one_time ? 'Yes' : 'No'}\n\nShare the Message ID below with the recipient to retrieve the message.\`;
+                   showResult('Success', successMessage, false, result.id);
+                   e.target.reset();
+                   oneTimeEnabled = false;
+                   document.getElementById('oneTimeToggle').classList.remove('active');
+               }
+           } catch (error) {
+               showResult('Error', \`Failed to create message: \${error.message}\`, true);
+           } finally {
+               setLoading('createForm', false);
+           }
         });
 
         document.getElementById('retrieveForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            hideResult();
-            setLoading('retrieveForm', true);
-            
-            try {
-                const data = {
-                    id: document.getElementById('retrieveId').value,
-                    key: document.getElementById('retrieveKey').value
-                };
-                
-                const result = await retrieveMessage(data);
-                
-                if (result.error) {
-                    showResult('Error', result.error, true);
-                } else {
-                    showResult('Message Retrieved', result.message);
-                    e.target.reset();
-                }
-            } catch (error) {
-                showResult('Error', \`Failed to retrieve message: \${error.message}\`, true);
-            } finally {
-                setLoading('retrieveForm', false);
-            }
-        });
+           e.preventDefault();
+           hideResult();
+           setLoading('retrieveForm', true);
 
-        // Initialize app
-        document.addEventListener('DOMContentLoaded', () => {
-            initTheme();
+           try {
+               const data = {
+                   id: document.getElementById('retrieveId').value,
+                   key: document.getElementById('retrieveKey').value
+               };
+
+               const result = await retrieveMessage(data);
+
+               if (result.error) {
+                   showResult('Error', result.error, true);
+               } else {
+                   showResult('Message Retrieved', result.message);
+                   e.target.reset();
+               }
+           } catch (error) {
+               showResult('Error', \`Failed to retrieve message: \${error.message}\`, true);
+           } finally {
+               setLoading('retrieveForm', false);
+           }
         });
     </script>
 </body>

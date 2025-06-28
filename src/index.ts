@@ -2,10 +2,22 @@ import { post_message, put_message } from "./routes"
 import { html } from "./function"
 import rl from "@fastify/rate-limit"
 import Fastify from "fastify"
+import Redis from "ioredis"
 
 export default async () => {
+    const redis = new Redis({
+        host: process.env.REDIS_HOST,
+        port: parseInt(process.env.REDIS_PORT),
+        username: process.env.REDIS_USERNAME,
+        password: process.env.REDIS_PASSWORD
+    })
+
+    redis.on("error", (err) => {
+        console.log("Redis error:", err)
+    })
+
     const fastify = Fastify({ logger: false })
-    await fastify.register(rl, { max: 1, timeWindow: 60000 })
+    await fastify.register(rl, { redis, max: 10, timeWindow: 60000 })
 
     fastify.get("/", (_, reply) => reply.type("text/html").send(html))
     fastify.get("/status", (_, reply) => reply.code(200).send({ status: "ok" }))
