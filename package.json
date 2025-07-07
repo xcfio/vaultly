@@ -6,7 +6,7 @@
     "author": "xcfio",
     "license": "MIT",
     "scripts": {
-        "dev": "netlify dev --no-open",
+        "dev": "netlify dev --port=7200 --no-open",
         "test": "tsc --noEmit"
     },
     "dependencies": {
@@ -25,3 +25,4 @@
         "drizzle-kit": "^0.31.2"
     }
 }
+
