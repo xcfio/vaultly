@@ -3,7 +3,7 @@
 [![Code Test](https://github.com/xcfio/vaultly/actions/workflows/test.yaml/badge.svg)](https://github.com/xcfio/vaultly/actions/workflows/test.yaml)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/6d444867-9521-4f20-a2b7-62ee7ab534e0/deploy-status)](https://app.netlify.com/projects/vaultly-xcfio/deploys)
 [![Node.js Version](https://img.shields.io/badge/node-24.x-brightgreen.svg)](https://nodejs.org/)
-[![License](https://img.shields.io/github/license/xcfio/vaultly)](https://opensource.org/license/apache-2-0)
+[![License](https://img.shields.io/github/license/xcfio/vaultly)](https://opensource.org/license/mit)
 [![Fastify](https://img.shields.io/badge/Fastify-5.x-202020?logo=fastify)](https://www.fastify.io/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue?logo=typescript)](https://www.typescriptlang.org/)
 [![Package Manager](https://img.shields.io/badge/pnpm-latest-orange?logo=pnpm)](https://pnpm.io/)
