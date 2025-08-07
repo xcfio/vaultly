@@ -1,0 +1,127 @@
+.resultSection {
+    width: 100%;
+    margin-top: 2rem;
+}
+
+.resultCard {
+    background: var(--bg-card);
+    border-radius: 15px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    backdrop-filter: blur(10px);
+    display: none;
+}
+
+.resultCard.show {
+    display: block;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.resultTitle {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.resultContent {
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
+    border-radius: 8px;
+    padding: 1rem;
+    font-family: "Courier New", monospace;
+    white-space: pre-wrap;
+    word-break: break-all;
+    position: relative;
+}
+
+.copyIdContainer {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-top: 1rem;
+}
+
+.messageId {
+    flex: 1;
+    font-family: "Courier New", monospace;
+    font-size: 0.9rem;
+    word-break: break-all;
+    color: var(--text-primary);
+}
+
+.copyBtn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-family: "Comfortaa", cursive;
+    font-weight: 600;
+    font-size: 0.8rem;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.copyBtn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.copyBtn.copied {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    animation: copySuccess 0.3s ease;
+}
+
+@keyframes copySuccess {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.error {
+    color: #e53e3e;
+    background: rgba(229, 62, 62, 0.1);
+    border-color: rgba(229, 62, 62, 0.3);
+}
+
+.success {
+    color: #38a169;
+    background: rgba(56, 161, 105, 0.1);
+    border-color: rgba(56, 161, 105, 0.3);
+}
+
+@media (max-width: 768px) {
+    .copyIdContainer {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .copyBtn {
+        align-self: center;
+        width: fit-content;
+    }
+}

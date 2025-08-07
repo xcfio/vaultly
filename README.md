@@ -1,7 +1,6 @@
 # Vaultly 🔐
 
 [![Code Test](https://github.com/xcfio/vaultly/actions/workflows/test.yaml/badge.svg)](https://github.com/xcfio/vaultly/actions/workflows/test.yaml)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/6d444867-9521-4f20-a2b7-62ee7ab534e0/deploy-status)](https://app.netlify.com/projects/vaultly-xcfio/deploys)
 [![Node.js Version](https://img.shields.io/badge/node-24.x-brightgreen.svg)](https://nodejs.org/)
 [![License](https://img.shields.io/github/license/xcfio/vaultly)](https://opensource.org/license/mit)
 [![Fastify](https://img.shields.io/badge/Fastify-5.x-202020?logo=fastify)](https://www.fastify.io/)
@@ -16,7 +15,7 @@ A modern, encrypted messaging service that allows users to securely store and sh
 
 ## 🌐 Live Demo
 
-**[https://vaultly-xcfio.netlify.app/](https://vaultly-xcfio.netlify.app/)**
+**[https://vaultly-xcfio.vercel.app/](https://vaultly-xcfio.vercel.app/)**
 
 ## ✨ Features
 
@@ -56,42 +55,6 @@ A modern, encrypted messaging service that allows users to securely store and sh
 -   **`@types/node`** - TypeScript type definitions for Node.js built-in modules
 -   **`@types/uuid`** - TypeScript type definitions for UUID library
 -   **`drizzle-kit`** - CLI tool for database schema migrations and code generation
-
-## 📁 Project Structure
-
-```
-vaultly/
-├── .github/
-│   └── workflows/
-│       └── test.yml                 # GitHub Actions CI/CD workflow
-├── netlify/
-│   └── functions/
-│       └── api.ts                   # Main API handler
-├── src/
-│   ├── database/
-│   │   ├── index.ts                 # Database connection and schema
-│   │   └── message.ts               # Message model definitions
-│   ├── function/
-│   │   ├── crypto.ts                # Encryption/decryption utilities
-│   │   ├── html.ts                  # HTML template rendering
-│   │   └── index.ts                 # Utility functions
-│   ├── routes/
-│   │   ├── index.ts                 # Route definitions
-│   │   ├── post-message.ts          # POST endpoint for storing messages
-│   │   └── put-message.ts           # PUT endpoint for retrieving messages
-│   ├── index.ts                     # Main entry point for the application
-│   └── types.ts                     # TypeScript type definitions
-├── .env.example                     # Environment variables template
-├── .gitignore                       # Git ignore patterns
-├── .prettierignore                  # Prettier ignore patterns
-├── .prettierrc                      # Prettier configuration
-├── drizzle.config.ts                # Drizzle ORM configuration
-├── LICENSE                          # MIT License
-├── netlify.toml                     # Netlify deployment configuration
-├── package.json                     # Project dependencies and scripts
-├── README.md                        # Project documentation
-└── tsconfig.json                    # TypeScript configuration
-```
 
 ## 📄 File Explanations
 

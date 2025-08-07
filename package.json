@@ -5,24 +5,31 @@
     "type": "commonjs",
     "author": "xcfio",
     "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/xcfio/vaultly"
+    },
+    "bugs": {
+        "url": "https://github.com/xcfio/vaultly/issues",
+        "email": "omarfaruksxp@gmail.com"
+    },
     "scripts": {
-        "dev": "netlify dev --port=7200 --no-open",
-        "test": "tsc --noEmit"
+        "dev": "next dev --port=7700",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint",
+        "test": "tsc --NoEmit"
     },
     "dependencies": {
-        "@fastify/rate-limit": "^10.3.0",
-        "@netlify/functions": "^4.1.7",
-        "drizzle-orm": "^0.44.2",
-        "fastify": "^5.4.0",
-        "ioredis": "^5.6.1",
-        "postgres": "^3.4.7",
-        "serverless-http": "^3.2.0",
-        "uuid": "^11.1.0"
+        "lucide-react": "^0.536.0",
+        "next": "15.4.5",
+        "react": "19.1.1",
+        "react-dom": "19.1.1"
     },
     "devDependencies": {
-        "@types/node": "^24.0.4",
-        "@types/uuid": "^10.0.0",
-        "drizzle-kit": "^0.31.2"
+        "@types/node": "^24.1.0",
+        "@types/react": "^19.1.9",
+        "@types/react-dom": "^19.1.7",
+        "typescript": "^5.8.3"
     }
 }
-
